@@ -138,7 +138,7 @@ The module produced:
 
 The main Power BI-ready files are:
 
-- `powerbi_main_retail_data.csv`
+Note: `powerbi_main_retail_data.csv` was generated in the notebook but was not uploaded to GitHub because of file size limitations. It can be recreated by running the notebook. The original raw datasets are included in the repository.
 - `powerbi_forecasting_data.csv`
 - `powerbi_logistics_data.csv`
 - `powerbi_inventory_supplier_data.csv`
