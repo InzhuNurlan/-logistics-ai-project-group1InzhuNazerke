@@ -1,5 +1,3 @@
-# -logistics-ai-project-group1InzhuNazerke
-
 # AI-Driven Smart Retail Supply Chain Intelligence System
 
 An end-to-end machine learning and business intelligence project that transforms a retail sales dataset into actionable supply chain insights. The project covers demand forecasting, delivery delay prediction, inventory optimization, supplier ranking, transportation cost analysis, and supply chain risk monitoring.
