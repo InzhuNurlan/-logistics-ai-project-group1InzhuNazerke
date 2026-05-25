@@ -1,83 +1,204 @@
 # -logistics-ai-project-group1InzhuNazerke
- AI-Driven Smart Retail Supply Chain Intelligence System
-An end-to-end machine learning project that transforms Walmart retail sales data into actionable supply chain intelligence — covering demand forecasting, delivery delay prediction, inventory optimization, supplier ranking, and transportation risk analysis.
 
-👥 Group Members
+# AI-Driven Smart Retail Supply Chain Intelligence System
 
-Inzhu
-Nazerke
+An end-to-end machine learning and business intelligence project that transforms a retail sales dataset into actionable supply chain insights. The project covers demand forecasting, delivery delay prediction, inventory optimization, supplier ranking, transportation cost analysis, and supply chain risk monitoring.
 
+## Team Members
 
-📦 Dataset
-Walmart Recruiting - Store Sales Forecasting Dataset
-Source: https://www.kaggle.com/datasets/manjeetsingh/retaildataset
-The project uses three interconnected files:
+- Nazerke @nazhmdt
+- Inzhu @InzhuNurlan
 
-sales data-set.csv — historical weekly sales by store and department (45 stores, 2010–2012)
-Features data set.csv — external factors per store and week (temperature, fuel price, CPI, unemployment, holiday flag, markdown promotions)
-stores data-set.csv — store type (A, B, C) and store size in square feet
+## Professor
+- Muhamed Ali Ibrahim
 
- Tools & Libraries
-CategoryLibrariesData processingpandas, numpyVisualizationmatplotlib, seabornMachine Learningscikit-learn (LinearRegression, LogisticRegression, RandomForestRegressor, RandomForestClassifier, KMeans)Time Seriesstatsmodels (ARIMA), prophetEnvironmentJupyter Notebook, Python 3DashboardMicrosoft Power BI
+## Project Overview
 
- Folder Structure
-retail-supply-chain-ai-project/
-│
-├── retail-supply-chain-ai-project_Inzhu_Nazerke.ipynb   # Main analysis notebook
-│
-├── data/
-│   ├── sales data-set.csv                               # Raw weekly sales data
-│   ├── Features data set.csv                            # Raw external features
-│   └── stores data-set.csv                              # Raw store metadata
-│
-├── outputs/
-│   ├── cleaned_retail_supply_chain_data.csv             # Cleaned & merged dataset
-│   ├── powerbi_main_retail_data.csv                     # Power BI: sales & EDA
-│   ├── powerbi_forecasting_data.csv                     # Power BI: demand forecast
-│   ├── powerbi_logistics_data.csv                       # Power BI: delivery delays
-│   ├── powerbi_inventory_supplier_data.csv              # Power BI: inventory & ABC
-│   ├── optional_powerbi_supplier_summary.csv            # Supplier reliability ranking
-│   └── optional_powerbi_route_summary.csv               # Route cost & efficiency
-│
-├── dashboard/
-│   └── supply_chain_dashboard.pbix                      # Power BI dashboard file
-│
-└── README.md
+Retail companies need accurate demand forecasting, strong inventory planning, and efficient logistics operations. If demand is predicted incorrectly, the business may face stockouts, overstock, high transportation costs, or delivery delays.
 
- How to Run the Notebook
+This project builds an AI-driven retail supply chain intelligence system using Python and Power BI. Python is used for data cleaning, machine learning, forecasting, clustering, and risk analysis. Power BI is used to visualize the results and support business decision-making.
 
-Clone or download this repository to your local machine.
-Install the required libraries by running:
+## Dataset
 
-bash   pip install pandas numpy matplotlib seaborn scikit-learn statsmodels prophet
+The project uses the Retail Dataset from Kaggle by Manjeet Singh.
 
-Place the raw data files (sales data-set.csv, Features data set.csv, stores data-set.csv) in the same directory as the notebook, or inside a data/ subfolder (update the file paths in the notebook if needed).
-Open the notebook:
+Dataset source: https://www.kaggle.com/datasets/manjeetsingh/retaildataset
 
-bash   jupyter notebook retail-supply-chain-ai-project_Inzhu_Nazerke.ipynb
+The original dataset includes three files:
 
-Run all cells from top to bottom using Kernel → Restart & Run All.
-The notebook will generate cleaned data files and Power BI-ready CSV exports automatically.
+- `sales data-set.csv` — weekly sales by store, department, date, and holiday status
+- `Features data set.csv` — temperature, fuel price, markdowns, CPI, unemployment, and holiday status
+- `stores data-set.csv` — store type and store size
 
+After merging, the final dataset contains sales, store characteristics, economic indicators, markdown promotions, and time-based features.
 
- Prophet may require separate installation on some systems: pip install neuralprophet or follow the Prophet installation guide.
+## Important Note About Logistics Features
 
+The original retail dataset does not include direct logistics variables such as shipping mode, warehouse, distance, traffic, supplier, route, or order priority.
 
- Project Structure & Analysis Modules
-The notebook is organized into six analytical tasks:
-TaskDescriptionTask 1Data loading, cleaning, merging, and feature engineeringTask 2Exploratory Data Analysis — sales trends, store types, holiday impact, correlationsTask 3Demand forecasting — Linear Regression, Random Forest, ARIMA, ProphetTask 4Delivery delay prediction — Logistic Regression, Random Forest ClassifierTask 5Inventory optimization — ABC Analysis, KMeans clustering, safety stock calculationTask 6Supplier & transportation analytics — route efficiency, risk scoring, bottleneck identification
+To complete the required supply chain modules, proxy logistics features were created:
 
- Key Business Insights
-1.  Sales Are Seasonal — Prepare Before Peak Periods
-Sales increase significantly during holiday periods. The company should prepare additional inventory and logistics capacity before high-demand weeks to avoid stockouts and delivery pressure.
-2.  Random Forest Is the Strongest Forecasting Model
-Random Forest Regressor significantly outperforms Linear Regression for weekly demand prediction. This confirms that retail demand follows non-linear patterns that simple regression models cannot fully capture. Machine learning is essential for accurate forecasting.
-3.  Category A Departments Drive Most Revenue
-ABC Analysis shows that Category A departments generate the majority of total sales. These departments should receive priority in replenishment planning and safety stock management to prevent revenue loss from stockouts.
-4.  Delivery Delay Risk Peaks Under Multiple Pressure Factors
-Delay risk is highest during weeks with high traffic, high fuel prices, holiday periods, long-distance routes, and critical priority orders. The predictive model can flag high-risk deliveries in advance, enabling preventive logistics action.
-5.  West and South Routes Are the Costliest and Riskiest
-West and South regions have the highest transportation costs and supply chain risk scores, especially with Same Day and Second Class shipping. These routes require focused cost optimization and logistics planning.
+- Store groups were used to create regions
+- Regions were connected to warehouses
+- Store type was used as a proxy for shipping mode
+- Weekly sales level was used to define order priority
+- Fuel price, holiday status, and sales pressure were used to estimate traffic index
+- Distance, fuel price, and traffic index were used to estimate transportation cost and lead time
 
- Power BI Dashboard
- 
+This approach allowed us to build delivery delay prediction, supplier analytics, transportation analytics, and supply chain risk analysis.
+
+## Project Tasks
+
+### Task 1: Data Cleaning
+
+The three datasets were loaded, checked, cleaned, and merged. Missing markdown values were replaced with 0, while missing CPI and unemployment values were filled with median values. Additional time-based and business features were created.
+
+### Task 2: Exploratory Data Analysis
+
+EDA was used to analyze weekly sales trends, yearly and monthly sales, holiday impact, store type performance, top stores, top departments, correlations, and outliers.
+
+### Task 3: Demand Forecasting
+
+Four forecasting methods were applied:
+
+- Linear Regression
+- Random Forest Regressor
+- ARIMA
+- Prophet
+
+Random Forest Regressor performed the best for weekly sales prediction. ARIMA and Prophet were used for monthly sales forecasting and future inventory planning.
+
+### Task 4: Delivery Delay Prediction
+
+A delivery delay prediction module was built using proxy logistics features. The target variable was created using the logistic probability formula.
+
+Models used:
+
+- Logistic Regression
+- Decision Tree Classifier
+- Random Forest Classifier
+
+The module produced delay probabilities, high-risk route identification, and delivery performance insights.
+
+### Task 5: Inventory Optimization
+
+Inventory optimization was completed using:
+
+- ABC Analysis
+- K-Means Clustering
+- Overstock and understock detection
+- Reorder point recommendations
+
+Departments were used as product categories because the dataset does not include direct product-level stock quantities.
+
+### Task 6: Supplier and Transportation Analytics
+
+Supplier and transportation performance were analyzed using proxy supply chain variables. Warehouses were treated as suppliers or distribution partners.
+
+The module produced:
+
+- Supplier rankings
+- Lead time analysis
+- Transportation cost analysis
+- Route efficiency analysis
+- Fuel and delay trends
+- Logistics bottleneck identification
+- Supply chain risk analysis
+
+## Tools and Libraries
+
+| Category | Tools / Libraries |
+|---|---|
+| Data Processing | pandas, numpy |
+| Visualization | matplotlib, seaborn |
+| Machine Learning | scikit-learn |
+| Forecasting | statsmodels ARIMA, Prophet |
+| Dashboard | Microsoft Power BI |
+| Version Control | GitHub |
+
+## Repository Structure
+
+```text
+.
+├── README.md
+├── retail-supply-chain-ai-project_Inzhu_Nazerke.ipynb
+├── FP_logistics_Nazerke_Inzhu_presentation.pdf
+├── dashboard.pdf
+├── screenshots_InzhuNazerke.pdf
+├── powerbi_main_retail_data.csv
+├── powerbi_forecasting_data.csv
+├── powerbi_logistics_data.csv
+├── powerbi_inventory_supplier_data.csv
+├── optional_powerbi_supplier_summary.csv
+├── optional_powerbi_route_summary.csv
+├── Features data set.csv
+├── sales data-set.csv
+└── stores data-set.csv
+```
+
+## Power BI Files
+
+The main Power BI-ready files are:
+
+- `powerbi_main_retail_data.csv`
+- `powerbi_forecasting_data.csv`
+- `powerbi_logistics_data.csv`
+- `powerbi_inventory_supplier_data.csv`
+
+Optional files:
+
+- `optional_powerbi_supplier_summary.csv`
+- `optional_powerbi_route_summary.csv`
+
+These files were created from the Python notebook and used to build the Power BI dashboard.
+
+## Key Results
+
+- Sales show clear seasonal patterns and increase during holiday periods.
+- Store Type A generates the highest total sales.
+- Random Forest Regressor achieved the strongest weekly sales forecasting performance.
+- Department, store size, store number, week, and CPI were important demand forecasting features.
+- Delivery delay risk increases with high traffic index, fuel price, holiday weeks, distance, and sales pressure.
+- ABC Analysis showed that Category A departments generate the majority of total sales.
+- K-Means Clustering grouped departments by sales, demand volatility, store coverage, and markdown behavior.
+- Warehouse_E had the highest supplier reliability score.
+- West and South routes showed higher transportation cost and supply chain risk.
+
+## Business Recommendations
+
+- Use Random Forest for weekly demand forecasting because retail demand is non-linear.
+- Monitor Category A departments weekly and maintain enough safety stock.
+- Prepare additional inventory and transportation capacity before holiday periods.
+- Monitor high-risk routes with high fuel price, traffic pressure, and long distance.
+- Review Warehouse_S and Warehouse_W routes because they show higher risk.
+- Use Power BI dashboards to track sales, forecasted demand, inventory status, delay risk, supplier reliability, and transportation bottlenecks.
+
+## How to Run the Project
+
+1. Download the original Kaggle dataset.
+2. Open the notebook file: `retail-supply-chain-ai-project_Inzhu_Nazerke.ipynb`
+3. Run all cells from top to bottom.
+4. The notebook will clean the data, train models, generate outputs, and export Power BI-ready CSV files.
+5. Open Power BI and load the exported CSV files.
+6. Build dashboard pages using the prepared data.
+
+## Project Outputs
+
+The project includes:
+
+- Cleaned and merged dataset
+- EDA charts and insights
+- Demand forecasting models
+- Delivery delay prediction models
+- Inventory optimization results
+- Supplier and transportation analytics
+- Power BI-ready CSV files
+- Power BI dashboard
+- Presentation file
+- Screenshots file
+
+## Conclusion
+
+This project developed an AI-driven smart retail supply chain intelligence system using a retail sales dataset from Kaggle. The system combines Python-based machine learning and Power BI dashboards to support demand forecasting, inventory planning, delivery risk control, supplier ranking, and transportation cost optimization.
+
+Although some logistics variables were not directly available in the original dataset, proxy features were created to complete the required supply chain analytics modules.
