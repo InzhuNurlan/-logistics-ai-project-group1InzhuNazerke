@@ -8,7 +8,7 @@ An end-to-end machine learning and business intelligence project that transforms
 - Inzhu @InzhuNurlan
 
 ## Professor
-- Muhamed Ali Ibrahim
+- Mohamed Ali Ibrahim @Moali123-svg
 
 ## Project Overview
 
